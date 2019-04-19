@@ -1,7 +1,6 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                                  LIBRARIES
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-library(raster)
 library(sf)
 library(magrittr)
 
@@ -9,7 +8,7 @@ library(magrittr)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                                    DATA
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-load('./data/rawData/invasiveSpecies.RData')
+load('./data/rawData/invasives.RData')
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -19,7 +18,7 @@ load('./data/rawData/invasiveSpecies.RData')
 # We therefore simply format the object for final export of the driver layer.
 
 # Change column name
-colnames(invasives)[1] <- 'invasiveSpecies'
+colnames(invasives)[1] <- 'InvasiveSpecies'
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,5 +32,5 @@ save(invasives, file = './Data/Driver/InvasiveSpecies.RData')
 #                                 VISUALIZE DATA
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 png('./Figures/InvasiveSpecies.png', width = 1280, height = 1000, res = 200, pointsize = 6)
-plot(invasives[, 'invasiveSpecies'], border = 'transparent')
+plot(invasives[, 'InvasiveSpecies'], border = 'transparent')
 dev.off()

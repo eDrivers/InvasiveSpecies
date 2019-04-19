@@ -73,7 +73,31 @@ values(invasives) <- values(invasives)
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#                                    FORMAT DATA
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Modify projection
+# We use the Lambert projection as a default, which allows us to work in meters
+# rather than in degrees
+prj <- st_crs(32198)$proj4string
+invasives <- projectRaster(invasives, crs = prj)
+
+
+# We also work with polygons rather than rasters, so we need to transform raster
+# cells to polygons. Data could be left as rasters, but we elected to work with
+# a hexagonal grid and so have decided to convert everything in polygons.
+# Transform raster to polygon
+invasives <- rasterToPolygons(invasives)
+
+# Transform to sf object
+invasives <- st_as_sf(invasives)
+
+# Select only features with values > 0
+id0 <- invasives$invasives > 0
+invasives <- invasives[id0, ]
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                                  EXPORT DATA
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Export object as .RData
-save(invasives, file = './data/rawData/invasivesStL.RData')
+save(invasives, file = './data/rawData/invasives.RData')
