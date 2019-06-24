@@ -24,8 +24,11 @@ colnames(invasives)[1] <- 'InvasiveSpecies'
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                                  EXPORT DATA
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Change name for uniformity
+InvasiveSpecies <- invasives
+
 # Export object as .RData
-save(invasives, file = './Data/Driver/InvasiveSpecies.RData')
+save(InvasiveSpecies, file = './Data/Driver/InvasiveSpecies.RData')
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
